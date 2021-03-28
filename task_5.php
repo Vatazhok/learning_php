@@ -8,7 +8,7 @@ $users["4"] = ["name" => "artem", "email" => "katya@test.com", "lang" => "ru"];
 $users["2"] = ["name" => "artem", "email" => "artem@gmail.com", "lang" => "ua"];
 
 
-ksort($users);
+//ksort($users);
 $arr = [];
 $arr2 = [];
 for ($i = 0; $i < count($users); $i++) {
@@ -52,12 +52,17 @@ print_r($ru);
 echo '</br>';
 print_r($fr);
 echo '</pre>';
-
+$count[]=array_keys($users);
 $users_new = [];
+$users_fin=[];
+$count1=[];
 for ($i = count($users) - 1; $i >= 0; $i--) {
-    $users_new[] = $users[$i];
+   $users_new[]= $users[$count[0][$i]];
+   $count1[]=$count[0][$i];
 }
+$users_fin[] =array_combine($count1, $users_new);
 echo "3:" . '</br>';
 echo '<pre>';
-print_r($users_new);
+print_r($users_fin);
 echo '</pre>';
+
