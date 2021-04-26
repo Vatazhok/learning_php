@@ -20,4 +20,7 @@ if ( $count>7 and $count<12){
 }
 
 $str2='1a2b3c4b5d6e7f8g9h0';
+$mass=['0','1','2','3','4','5','6','7','8','9'];
+echo str_replace($mass,'',$str2);
+echo '</br>';
 echo preg_replace('~\d~','', $str2);
