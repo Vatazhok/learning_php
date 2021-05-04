@@ -8,37 +8,43 @@
 //$users_json=json_encode($users);
 //$written = file_put_contents('users.json', $users_json);
 
-$users_form = ['login' => $_POST['login'], 'pass' => $_POST['pass']];
+$jsonUser = '';
 
+foreach ($_POST as $key => $value) {
+    $jsonUser = $key;
+}
+
+$userEncode = json_decode($jsonUser, true);
+
+$usersForm = ['login' => $userEncode['login'], 'pass' => $userEncode['pass']];
 
 $users = file_get_contents('users.json');
 $decode_users = json_decode($users, true);
 
 $number = 0;
 $count = 0;
-$rez_search = false;
+$rez_search = '{"result":"false"}';
+
 
 foreach ($decode_users as $value) {
-    if ($value['login'] == $users_form['login'] && $value['pass'] == $users_form['pass']) {
+    if ($value['login'] == $usersForm['login'] && $value['pass'] == $usersForm['pass']) {
         $count = $value['count'];
         $count++;
-        $rez_search = true;
+        $rez_search = '{"result":"true"}';
         break;
     }
     $number++;
 }
+echo $rez_search;
 
-if ($rez_search) {
-    echo 'Привіт' . ' ' . $users_form['login'];
+$resultDecode = json_decode($rez_search, true);
+if ($resultDecode['result'] == "true") {
+    $base = $decode_users;
+    $replacements = [$number => ["count" => $count]];
+
+    $result = array_replace_recursive($base, $replacements);
+    $result = json_encode($result, true);
+    file_put_contents('users.json', $result);
 } else {
-    die("Невірний логін чи пароль");
+    die();
 }
-
-
-$base = $decode_users;
-$replacements = [$number => ["count" => $count]];
-
-$result = array_replace_recursive($base, $replacements);
-$result = json_encode($result, true);
-file_put_contents('users.json', $result);
-

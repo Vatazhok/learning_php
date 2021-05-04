@@ -2,7 +2,7 @@
   {
     "login": "ivan",
     "pass": "1",
-    "count": 5
+    "count": 7
   },
   {
     "login": "ira",
@@ -12,6 +12,6 @@
   {
     "login": "dan",
     "pass": "3",
-    "count": 4
+    "count": 14
   }
 ]
