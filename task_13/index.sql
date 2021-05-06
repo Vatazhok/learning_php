@@ -16,7 +16,7 @@ VALUES ('cpu'),
        ('video-card'),
        ('smartphone');
 
-INSERT INTO `shopping_basket`.shopping_basket (goods_id, user_id, quantity_goods)
+INSERT INTO `shopping_basket`.`shopping_basket` (`goods_id`, `user_id`, `quantity_goods`)
 VALUES (1,1,1),
        (4,3,1);
 
