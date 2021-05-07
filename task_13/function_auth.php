@@ -16,7 +16,9 @@ foreach ($res as $value) {
 }
 
 if ($rez_search) {
-    echo 'Привіт' . ' ' . $users_form['login'];
+    $_SESSION['User']=$_POST['login'];
+    header('Location:index.php');
+
 } else {
     die("Невірний логін чи пароль");
 }
