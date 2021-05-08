@@ -1,9 +1,14 @@
 <?php
 require_once ('config.php');
 
+/**
+ * @var $pdo . included with config.php
+ */
+
+
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$stmp = $pdo->query("SELECT * FROM `db_users`.`users`");
-$res=$stmp->fetchAll();
+$stmt = $pdo->query("SELECT * FROM `db_users`.`users`");
+$res=$stmt->fetchAll();
 
 $users_form = ['login' => $_POST['login'], 'pass' => $_POST['pass']];
 $rez_search = false;
